@@ -1,1 +1,1 @@
-# A basic richtextbox 
+# A basic richtexteditor
