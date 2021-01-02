@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="https://kit.fontawesome.com/61cca075a1.js" crossorigin="anonymous"></script>
+	</head>
+	<body onload="enableEdit();">
+		<div>
+			<button onclick="changeto('bold');"><i class="fa fa-bold"></i></button>
+			<button onclick="changeto('italic');"><i class="fa fa-italic"></i></button>
+			<button onclick="changeto('underline');"><i class="fa fa-underline"></i></button>
+			<button onclick="changeto('strikeThrough');"><i class="fa fa-strikethrough"></i></button>
+			<button onclick="changeto('justifyLeft');"><i class="fa fa-align-left"></i></button>
+			<button onclick="changeto('justifyRight');"><i class="fa fa-align-right"></i></button>
+			<button onclick="changeto('justifyCenter');"><i class="fa fa-align-center"></i></button>
+			<button onclick="changeto('justifyFull');"><i class="fa fa-align-justify"></i></button>
+			<button onclick="changeto('cut');"><i class="fa fa-cut"></i></button>
+			<button onclick="changeto('copy');"><i class="fa fa-copy"></i></button>
+			<button onclick="changeto('subscript');"><i class="fa fa-subscript"></i></button>
+			<button onclick="changeto('superscript');"><i class="fa fa-superscript"></i></button>
+			<button onclick="changeto('indent');"><i class="fa fa-indent"></i></button>
+			<button onclick="changeto('outdent');"><i class="fa fa-dedent"></i></button>
+			<button onclick="changeto('undo');"><i class="fa fa-undo"></i></button>
+			<button onclick="changeto('redo');"><i class="fa fa-repeat"></i></button>
+			<button onclick="changeto('insertUnorderedList');"><i class="fa fa-list-ul"></i></button>
+			<button onclick="changeto('insertOrderedList');"><i class="fa fa-list-ol"></i></button>
+			<select onchange="changefrom('formatBlock',this.value);">
+				<option value="H1">H1</option>
+				<option value="H2">H2</option>
+				<option value="H3">H3</option>
+				<option value="H4">H4</option>
+				<option value="H5">H5</option>
+				<option value="H6">H6</option>
+			</select>
+			<button onclick="changeto('insertHorizontalRule');">HR</button>
+			<button onclick="changefrom('createLink',prompt('Enter a URL', 'http://'));"><i class="fa fa-link"></i></button>
+			<button onclick="changeto('unlink');"><i class="fa fa-unlink"></i></button>
+			<button onclick="toggleSource();"><i class="fa fa-code"></i></button>
+			<button onclick="toggleEdit();">Toggle Edit</button>
+			<br>
+			<select onchange="changefrom('fontName',this.value);">
+				<option value="Arial">Arial</option>
+				<option value="Cosmic Sans MS">Cosmic Sans MS</option>
+				<option value="Courier">Courier</option>
+				<option value="Georgia">Georgia</option>
+				<option value="Tahoma">Tahoma</option>
+				<option value="Times New Roman">Times New Roman</option>
+			</select>
+			Font Size
+			<select onchange="changefrom('fontSize',this.value);">
+				<option value="1">10</option>
+				<option value="2">12</option>
+				<option value="3">14</option>
+				<option value="4">16</option>
+				<option value="5">18</option>
+				<option value="6">20</option>
+				<option value="7">22</option>
+				
+			</select>
+			Text Color<input type="color" onchange="changefrom('foreColor',this.value);"/>
+			Background<input type="color" onchange="changefrom('hiliteColor',this.value);"/>
+			<button onclick="changefrom('insertImage', prompt('Enter the image URL',''));"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
+			<button onclick="changeto('selectAll');">Select All</button>
+				
+		</div>
+		<iframe name="richTextField" style="width:1000px;height:500px;"></iframe>
+	</body>
+			<script type="text/javascript">
+			var showingSource = false;
+			var editModeOn = true;		
+			function enableEdit(){
+				richTextField.document.designMode = 'On';
+			}
+			function changeto(command){
+				richTextField.document.execCommand(command, false, null);
+			}
+			function changefrom(command,arg){
+				richTextField.document.execCommand(command, false, arg);
+			}
+			function toggleSource(){
+				if(showingSource){
+					richTextField.document.getElementsByTagName('body')[0].innerHTML = richTextField.document.getElementsByTagName('body')[0].textContent;
+					showingSource = false;
+				}else{
+					richTextField.document.getElementsByTagName('body')[0].textContent= richTextField.document.getElementsByTagName('body')[0].innerHTML ;
+					showingSource = true;
+				}
+			}
+			function toggleEdit(){
+				if(editModeOn){
+					richTextField.document.designMode = 'Off';
+					editModeOn = false;
+				}else{
+					richTextField.document.designMode = 'On';
+					editModeOn = true;
+				}
+			}
+		</script>
+</html>
